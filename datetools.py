@@ -2,11 +2,13 @@ import datetime as dt
 import time
 
 
-def calculate_age(born):
-    """Calcuate age in years.
+def calculate_age(born, date=''):
+    """Calculate age in years.
     
     Args:
         born: (datetime): Datetime object for date of birth (yyyy-mm-dd)
+        date: (datetime): Optional date to calculate from. If no date is
+        passed, today's date is used.
         
     Returns:
         age (int): Age in years.
@@ -15,8 +17,12 @@ def calculate_age(born):
         https://stackoverflow.com/questions/2217488/age-from-birthdate-in-
         python
     """
-    today = dt.datetime.today()
-    return today.year - born.year - ((today.month, today.day) <
+    if date not in (None, ''):
+        return date.year - born.year - ((date.month, date.day) <
+                                     (born.month, born.day))
+    else:
+        today = dt.datetime.today()
+        return today.year - born.year - ((today.month, today.day) <
                                      (born.month, born.day))
 
 
