@@ -380,6 +380,42 @@ def convert_to_datetime(date, date_format):
     return dt.datetime.strptime(date, date_format)
 
 
+def convert_to_mmm_yy(date):
+    """Return date string in format Mmm-YY.
+    
+    Extracts the first three letters of the date and the last two digits and
+    returns the date string in the format Mmm_YY.
+    
+    Args:
+        date (str): String of date in format Month Year e.g. October 2018.
+        
+    Returns:
+        extracted_date (str): Extracted date in form Mmm-YY e.g. Oct-18.
+        If an invalid date is passed, prints the invalid date and returns an
+        empty string.
+    """
+    allowed_months = ['January', 'February', 'March', 'April', 'May', 'June',
+                     'July', 'August', 'September', 'October', 'November',
+                     'December']
+    # Extract month
+    month = date[:-5]
+    # Extract year
+    year = date[-4:]
+    # Check that a valid month and year is passed
+    if month in allowed_months:
+        try:
+            int(year)
+        except ValueError:
+            print('Invalid year: {}'.format(year))
+            return ''
+        else:
+            # Return Month and Year in required format
+            return(month[:3] + '-' + year[2:])
+    else:
+        print('Invalid month: {}'.format(month))
+        return ''
+
+
 def convert_to_timestamp(date):
     # print('Date: {}'.format(date))
     return time.mktime(dt.datetime.strptime(str(date), "%d/%m/%Y")
