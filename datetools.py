@@ -515,6 +515,8 @@ def get_days_past(input_date, in_sep='/', out_sep='/'):
                 return abs((p_date-up_today).days)
             else:
                 return False
+        else:
+            return False
     else:
         return False
 
