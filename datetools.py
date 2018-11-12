@@ -505,7 +505,6 @@ def get_days_past(input_date, in_sep='/', out_sep='/'):
         # print('Cleaned_date: {}'.format(cleaned_date))
         if cleaned_date:
             # Make sure that provided date is before today's date
-            # If not, return the incorrect value
             if check_first_second_dates(cleaned_date, cleaned_today):
                 # print('Converted date: {}'.format(date))
                 # Convert provided date to a datetime object
@@ -514,6 +513,8 @@ def get_days_past(input_date, in_sep='/', out_sep='/'):
                 # print('Converted date: {}'.format(p_date))
                 # print('Converted today date: {}'.format(up_today))
                 return abs((p_date-up_today).days)
+            else:
+                return False
     else:
         return False
 
